@@ -1,0 +1,36 @@
+Interface IValue
+    Sub Render()
+End Interface
+
+Class Content : Implements IValue
+    Public Sub Render() Implements IValue.Render
+        Console.WriteLine("Content.Render")
+    End Sub
+End Class
+
+Class Image : Implements IValue
+    Public Sub Render() Implements IValue.Render
+        Console.WriteLine("Image.Render")
+    End Sub
+End Class
+
+Module Module1
+    Sub Main()
+        ' Create dictionary of Interface type instances.
+        Dim dict As Dictionary(Of String, IValue) = New Dictionary(Of String, IValue)
+        dict.Add("cat1.png", New Image())
+        dict.Add("image1.png", New Image())
+        dict.Add("home.html", New Content())
+
+        ' Get value from Dictionary and call their Render methods.
+        Dim value As IValue = Nothing
+        If dict.TryGetValue("cat1.png", value) Then
+            value.Render()
+        End If
+
+        ' Again.
+        If dict.TryGetValue("home.html", value) Then
+            value.Render()
+        End If
+    End Sub
+End Module
