@@ -8,7 +8,7 @@ Class Content : Implements IValue
     End Sub
 End Class
 
-Class Image : Implements IValue
+Class Image : Implements vvalue
     Public Sub Render() Implements IValue.Render
         Console.WriteLine("Image.Render")
     End Sub
